@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Nucleus Presents | Feedback</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/895706336371834890/921485845465272410/NucleusPresents.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+	<style>
+		body{
+			user-select: none;
+		}
+	</style>
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="bg-contact100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-contact100">
+			<div class="wrap-contact100">
+				<div class="contact100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+
+				<form class="contact100-form validate-form">
+					<span class="contact100-form-title">
+						Nucleus | Geri Bildirim
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Şikayet Türü Girilmedi">
+						<input id="feedbackhead" class="input100" type="text" name="name" placeholder="Geri Bildirim Konusu">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Discord Kullanıcı Adı Girilmedi">
+						<input id="userusername" class="input100" type="text" name="username" placeholder="Discord Kullanıcı Adı & E-Mail">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Geri Bildirim Mesajı Girilmedi">
+						<input id="content" class="input100" name="message" placeholder="Geri Bildirim Mesajı"></input>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-pencil" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="container-contact100-form-btn">
+						<a href="javascript:submit()" class="contact100-form-btn" data-tooltip="Mesajı gönderir">Gönder</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<script>
+    function submit() {
+        let url = "https://ptb.discord.com/api/webhooks/921487174921240587/KxV8Ftgg1VD-cGlEdNk4ihZIzxPhyB8dZgtkflRKzjHWyi6pQSF7hfk55cWdS8AIWee0";
+        let content = $("#content").val();
+		let userusername = $("#userusername").val();
+		let feedbackhead = $("#feedbackhead").val();
+        let username = "Nucleus Feedback";
+        let avatar_url = "https://cdn.discordapp.com/attachments/895706336371834890/919640809463246888/nucleus-presents.png";
+        if (url == 0){
+            window.alert("Lütfen URL giriniz!");
+        }else{
+        if (content == 0) {
+            window.alert("Lütfen Mesaj giriniz!");
+        }else {
+            $.ajax({
+                type: "post",
+                url : url,
+                data : {"content": "**========== Geri Bildirim Konusu ==========**" + "\n" + feedbackhead + "\n" + "**========== Gönderen Kişi Kullanıcı Adı ==========**" + "\n" + userusername + "\n" + "**========== Gönderen Kişi Mesajı ==========**" + "\n" + content, "username": username, "avatar_url": avatar_url},
+                success : function () {
+                    window.alert("Mesaj Gönderildi!");
+                },
+                error : function () {
+                    window.alert("HATA! Lütfen url yi düzgün yazdığınızdan emin olun!");
+                }
+            })
+        }}
+        }
+</script>
+
+</body>
+</html>
